@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opensource × Hacktoberfest 2026 | ACM Medicaps University</title>
+  <meta name="description" content="Join ACM Medicaps University for Opensource × Hacktoberfest 2026. Practical session on GitHub, open source ecosystem, and making your first contribution. Speaker: Mr. Harsh Sahu." />
+  
+  <!-- Google Fonts: Space Grotesk, Space Mono, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Connected Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ================= TOPBAR / NAV ================= -->
+  <header class="topbar">
+    <div class="topbar__container">
+      <a href="#" class="topbar__logo">
+        <span class="pixel-box"></span>
+        HACKTOBERFEST 26
+      </a>
+
+      <nav class="topbar__nav" aria-label="Main Navigation">
+        <a href="#overview" class="nav__link">Overview</a>
+        <a href="#mission" class="nav__link">Mission</a>
+        <a href="#takeaways" class="nav__link">Takeaways</a>
+        <a href="#speaker" class="nav__link">Speaker</a>
+        <a href="#simulator" class="nav__link">Git Simulator</a>
+        <a href="#faqs" class="nav__link">FAQs</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <button class="btn btn--peach" id="navRegisterBtn" onclick="openRegisterModal()">
+          Register Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION (3.js Dissolve + Parallax) ================= -->
+  <div data-anim-index class="index">
+    <section class="hero" id="overview">
+      <!-- Pixel graphics decorations on top corners -->
+      <div class="pixel-decor pixel-decor--top-left" aria-hidden="true">
+        <div class="pixel-bar red"></div>
+        <div class="pixel-bar red"></div>
+        <div class="pixel-bar red"></div>
+        <div class="pixel-stair white"></div>
+      </div>
+
+      <div class="pixel-decor pixel-decor--top-right" aria-hidden="true">
+        <div class="pixel-stair white"></div>
+        <div class="pixel-bar yellow"></div>
+        <div class="pixel-bar red"></div>
+      </div>
+
+      <!-- Parallax Leaf/Twig Masks from zip -->
+      <div class="hero__twigs">
+        <img class="hero__twig hero__twig--left" src="./img/mask-1.webp" alt="Decorative leaf asset left" />
+        <img class="hero__twig hero__twig--right" src="./img/mask-2.webp" alt="Decorative leaf asset right" />
+      </div>
+
+      <div class="hero__row">
+        <img class="hero__bg" src="./img/hero-bg.webp" alt="Hero background mesh texture" />
+        <canvas class="hero-canvas"></canvas>
+
+        <div class="hero__container">
+          <!-- Hero Main Header Block -->
+          <div class="hero__top">
+            <div class="event-tag-pill">
+              <span class="dot-live"></span>
+              SEPTEMBER 21, 2026 • 6:00 PM - 8:00 PM IST • ONLINE VIA ZOOM
+            </div>
+            
+            <h1 class="hero__title">
+              Opensource ×<br />
+              <span class="hero__teal">Hacktoberfest 2026</span>
+            </h1>
+            
+            <p class="hero__host">
+              ACM Medicaps University Presents
+            </p>
+
+            <div class="hero__cta-group">
+              <button class="btn btn--peach btn--lg" onclick="openRegisterModal()">
+                🚀 Start Your Open Source Journey
+              </button>
+              <a href="#mission" class="btn btn--outline-light btn--lg">
+                Explore Agenda ↓
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Word-by-word reveal text block -->
+          <div class="hero__content">
+            <h2 id="splitHeroHeading">
+              Take your first step into the world of Open Source! Join this practical session to understand how the open-source ecosystem works, get comfortable with GitHub, and learn how to make your first meaningful contribution.
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner Logos Bar at bottom of Hero -->
+      <div class="partner-bar">
+        <div class="partner-bar__container">
+          <span class="partner-label">ORGANIZED BY</span>
+          <div class="partner-badge">
+            <strong>ACM</strong> Medicaps Student Chapter
+          </div>
+
+          <span class="partner-label">PRESENTING PARTNER</span>
+          <div class="partner-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+            DigitalOcean
+          </div>
+
+          <span class="partner-label">POWERED BY</span>
+          <div class="partner-badge">
+            MLH × DEV
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= STORY / MISSION SECTION (Boxes matching Image 2) ================= -->
+  <section class="section section--light" id="mission">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header__meta">
+          <span class="mono-tag">THE STORY SO FAR</span>
+        </div>
+        <div class="section-header__grid">
+          <h2 class="display-heading">
+            From zero commits to <span class="highlight-red">your first pull request.</span>
+          </h2>
+          <p class="body-lead">
+            What began as a simple pull-request challenge has grown into one of the largest developer traditions in the world. ACM Medicaps University brings this practical experience to your screen.
+          </p>
+        </div>
+      </div>
+
+      <!-- Neubrutalism Card Grid (Matching Image 2 Style) -->
+      <div class="card-grid card-grid--3">
+        
+        <!-- Card 1 (White Neubrutalism Box) -->
+        <article class="nb-card nb-card--white">
+          <div class="nb-card__year">01 / UNDERSTAND</div>
+          <h3 class="nb-card__title">Learn the ecosystem.</h3>
+          <p class="nb-card__text">
+            Gain a crystal clear understanding of what Open Source is, how transparent global collaboration functions, and why open-source software powers modern tech stacks.
+          </p>
+          <div class="nb-card__footer">
+            <span class="chip">No Experience Needed</span>
+          </div>
+        </article>
+
+        <!-- Card 2 (White Neubrutalism Box) -->
+        <article class="nb-card nb-card--white">
+          <div class="nb-card__year">02 / PRACTICE</div>
+          <h3 class="nb-card__title">Master GitHub workflow.</h3>
+          <p class="nb-card__text">
+            Get comfortable with practical GitHub skills: repository navigation, cloning, branching, tracking issues, and preparing clean commit messages.
+          </p>
+          <div class="nb-card__footer">
+            <span class="chip">Hands-on Practice</span>
+          </div>
+        </article>
+
+        <!-- Card 3 (MUSTARD YELLOW Neubrutalism Box - Matching Featured Image 2) -->
+        <article class="nb-card nb-card--yellow">
+          <div class="nb-card__year">2026 / LAUNCH</div>
+          <h3 class="nb-card__title">Make your first PR.</h3>
+          <p class="nb-card__text">
+            Step beyond college projects! Join speaker Mr. Harsh Sahu to make your very first meaningful open-source contribution live during this 2-hour interactive workshop.
+          </p>
+          <div class="nb-card__footer">
+            <span class="chip chip--dark">⭐ Key Session Goal</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHAT YOU'LL WALK AWAY WITH (Takeaways Grid) ================= -->
+  <section class="section section--cream" id="takeaways">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="mono-tag">KEY LEARNING OUTCOMES</span>
+        <h2 class="display-heading center">💡 What you’ll walk away with</h2>
+        <p class="sub-heading">Everything you need to confidently participate in Hacktoberfest 2026 and beyond.</p>
+      </div>
+
+      <div class="takeaways-grid">
+        <div class="takeaway-card">
+          <div class="takeaway-card__icon">✅</div>
+          <div class="takeaway-card__content">
+            <h4>Clear Open Source Understanding</h4>
+            <p>Understand open licenses, governance, and how global developers collaborate seamlessly across time zones.</p>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-card__icon">✅</div>
+          <div class="takeaway-card__content">
+            <h4>Practical GitHub Skills</h4>
+            <p>Hands-on mastery of repositories, issue tracking, forks, branches, pull requests, and code reviews.</p>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-card__icon">✅</div>
+          <div class="takeaway-card__content">
+            <h4>Finding Beginner-Friendly Projects</h4>
+            <p>Learn how to discover beginner repositories labeled <code>good-first-issue</code> and <code>hacktoberfest</code>.</p>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-card__icon">✅</div>
+          <div class="takeaway-card__content">
+            <h4>Step-by-Step 1st Contribution</h4>
+            <p>Walk through creating a clean pull request live with real-time feedback and guidance.</p>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-card__icon">✅</div>
+          <div class="takeaway-card__content">
+            <h4>Open Source Etiquette</h4>
+            <p>Learn maintainer guidelines, contribution norms, and how to avoid common rookie mistakes and spam PRs.</p>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-card__icon">✅</div>
+          <div class="takeaway-card__content">
+            <h4>Real-World Dev Experience</h4>
+            <p>Insights into how Hacktoberfest participation strengthens your software engineering resume and portfolio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE GIT SIMULATOR ================= -->
+  <section class="section section--light" id="simulator">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-tag">INTERACTIVE DEMO</span>
+        <h2 class="display-heading">⚡ Learn the workflow in 4 steps</h2>
+        <p class="body-lead">Try out the standard Git contribution sequence right now before the live session.</p>
+      </div>
+
+      <div class="simulator-box">
+        <div class="simulator-box__top">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="terminal-title">hacktoberfest-2026-terminal — bash</div>
+        </div>
+
+        <div class="simulator-box__body">
+          <div class="sim-steps">
+            <button class="sim-step-btn active" data-step="1" onclick="runSimStep(1)">
+              <span class="step-num">1</span> Fork & Clone
+            </button>
+            <button class="sim-step-btn" data-step="2" onclick="runSimStep(2)">
+              <span class="step-num">2</span> Create Branch
+            </button>
+            <button class="sim-step-btn" data-step="3" onclick="runSimStep(3)">
+              <span class="step-num">3</span> Commit Changes
+            </button>
+            <button class="sim-step-btn" data-step="4" onclick="runSimStep(4)">
+              <span class="step-num">4</span> Submit PR 🎉
+            </button>
+          </div>
+
+          <div class="terminal-window" id="terminalOutput">
+            <div class="term-line"><span class="term-prompt">$</span> git clone https://github.com/acm-medicaps/hacktoberfest-2026.git</div>
+            <div class="term-line term-response">Cloning into 'hacktoberfest-2026'...</div>
+            <div class="term-line term-response">remote: Enumerating objects: 142, done.</div>
+            <div class="term-line term-response">remote: Total 142 (delta 42), reused 110 (delta 30)</div>
+            <div class="term-line term-success">✔ Repository successfully cloned to your local workstation!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EVENT LOGISTICS & COUNTDOWN TIMER ================= -->
+  <section class="section section--dark" id="details">
+    <div class="container">
+      <div class="logistics-grid">
+        
+        <!-- Left Column: Countdown & Meta -->
+        <div class="logistics-card">
+          <span class="mono-tag mono-tag--light">EVENT SCHEDULE</span>
+          <h2 class="display-heading text-cream">🗓 Mark Your Calendar</h2>
+          
+          <div class="event-meta-list">
+            <div class="meta-item">
+              <div class="meta-icon">🗓</div>
+              <div>
+                <strong>Date:</strong> 21st September 2026
+              </div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-icon">⏰</div>
+              <div>
+                <strong>Time:</strong> 6:00 PM – 8:00 PM IST
+              </div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-icon">📍</div>
+              <div>
+                <strong>Platform:</strong> Zoom Meet (Live Practical Session)
+              </div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-icon">🎙</div>
+              <div>
+                <strong>Speaker:</strong> Mr. Harsh Sahu
+              </div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-icon">✨</div>
+              <div>
+                <strong>Prerequisites:</strong> Zero prior Open Source experience required!
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Countdown Clock -->
+          <div class="countdown-wrapper">
+            <div class="countdown-title">EVENT COUNTDOWN</div>
+            <div class="countdown-timer" id="countdownTimer">
+              <div class="time-block">
+                <span id="cdDays">00</span>
+                <label>DAYS</label>
+              </div>
+              <div class="time-sep">:</div>
+              <div class="time-block">
+                <span id="cdHours">00</span>
+                <label>HOURS</label>
+              </div>
+              <div class="time-sep">:</div>
+              <div class="time-block">
+                <span id="cdMins">00</span>
+                <label>MINS</label>
+              </div>
+              <div class="time-sep">:</div>
+              <div class="time-block">
+                <span id="cdSecs">00</span>
+                <label>SECS</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Speaker Spotlight Card -->
+        <div class="speaker-card nb-card nb-card--yellow" id="speaker">
+          <div class="speaker-card__badge">FEATURED SPEAKER</div>
+          <div class="speaker-avatar">
+            <div class="avatar-box">
+              <span class="avatar-initials">HS</span>
+            </div>
+          </div>
+          <h3 class="speaker-name">Mr. Harsh Sahu</h3>
+          <p class="speaker-title">Open Source Mentor & Software Engineer</p>
+          <p class="speaker-bio">
+            Passionate about democratizing developer education, Mr. Harsh Sahu has guided hundreds of students in making their first open-source contributions and building real-world software careers.
+          </p>
+
+          <div class="speaker-topics">
+            <span class="topic-chip">Git & GitHub Basics</span>
+            <span class="topic-chip">PR Guidelines</span>
+            <span class="topic-chip">Good First Issues</span>
+            <span class="topic-chip">Hacktoberfest Perks</span>
+          </div>
+
+          <div class="speaker-ask-box">
+            <label for="speakerQuestion">Have a question for Harsh?</label>
+            <div class="ask-input-group">
+              <input type="text" id="speakerQuestion" placeholder="e.g. Which repo is best for HTML/JS beginners?" />
+              <button class="btn btn--peach" onclick="submitSpeakerQuestion()">Ask</button>
+            </div>
+            <div id="questionFeedback" class="feedback-msg"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHO SHOULD ATTEND ================= -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="audience-box nb-card nb-card--white">
+        <div class="audience-box__header">
+          <span class="mono-tag">TARGET AUDIENCE</span>
+          <h2>📌 Who should attend this session?</h2>
+        </div>
+        <div class="audience-box__body">
+          <p class="audience-desc">
+            Students who want to explore Open Source, contribute to real-world projects, get comfortable with GitHub, or take their first step beyond college projects.
+          </p>
+          <div class="audience-bullets">
+            <div class="aud-item">⚡ <strong>1st & 2nd Year Students:</strong> Get a head start before internship season.</div>
+            <div class="aud-item">⚡ <strong>Aspiring Developers:</strong> Build a visible public GitHub contribution graph.</div>
+            <div class="aud-item">⚡ <strong>Curious Beginners:</strong> No prior git experience needed — we start from scratch!</div>
+          </div>
+          <div class="audience-cta">
+            <button class="btn btn--peach btn--lg" onclick="openRegisterModal()">
+              Register Free For Workshop
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQS SECTION ================= -->
+  <section class="section section--light" id="faqs">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="mono-tag">FREQUENTLY ASKED QUESTIONS</span>
+        <h2 class="display-heading center">Got Questions? We’ve got answers.</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Is this event free to join?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Yes! Opensource × Hacktoberfest 2026 organized by ACM Medicaps University is 100% free for all students.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Do I need prior coding or Git experience?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            No prior open-source experience is required! We will cover everything from setting up your GitHub account to creating your first pull request.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>How will I join the session on 21st September?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            The session will take place live on Zoom Meet from 6:00 PM to 8:00 PM IST. The meeting link and calendar invite will be sent directly to your registered email address.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Will I get a certificate or digital badge?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Yes! All registered participants who attend the session and generate their registration pass will receive an official ACM Medicaps digital certificate of participation.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What is Hacktoberfest?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Hacktoberfest is a month-long global celebration of open-source software held every October, encouraging developers of all skill levels to make meaningful pull requests.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="topbar__logo">
+            <span class="pixel-box"></span>
+            HACKTOBERFEST 26
+          </div>
+          <p class="footer__desc">
+            Organized by ACM Student Chapter Medicaps University. Empowering students through open source education.
+          </p>
+        </div>
+
+        <div class="footer__links">
+          <div class="footer__col">
+            <h5>Navigation</h5>
+            <a href="#overview">Overview</a>
+            <a href="#mission">Mission</a>
+            <a href="#takeaways">Takeaways</a>
+            <a href="#speaker">Speaker</a>
+          </div>
+
+          <div class="footer__col">
+            <h5>Resources</h5>
+            <a href="https://hacktoberfest.com" target="_blank" rel="noopener">Official Hacktoberfest</a>
+            <a href="https://docs.github.com" target="_blank" rel="noopener">GitHub Docs</a>
+            <a href="#simulator">Git Simulator</a>
+          </div>
+
+          <div class="footer__col">
+            <h5>Connect</h5>
+            <a href="#">ACM Medicaps Website</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Discord Community</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 ACM Medicaps Student Chapter. All rights reserved. Hacktoberfest is a trademark of DigitalOcean.</p>
+        <button class="back-to-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+          Back to top ↑
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= REGISTRATION MODAL & TICKET GENERATOR ================= -->
+  <div class="modal-overlay" id="registerModal" aria-hidden="true">
+    <div class="modal-card nb-card nb-card--white">
+      <button class="modal-close-btn" onclick="closeRegisterModal()" aria-label="Close modal">×</button>
+
+      <div id="registrationFormView">
+        <div class="modal-header">
+          <span class="mono-tag">EVENT REGISTRATION</span>
+          <h2 class="modal-title">⭐ Opensource × Hacktoberfest 2026</h2>
+          <p class="modal-subtitle">ACM Medicaps University • 21st Sept 2026, 6:00 PM IST</p>
+        </div>
+
+        <form id="regForm" onsubmit="handleRegistration(event)">
+          <div class="form-group">
+            <label for="regName">Full Name *</label>
+            <input type="text" id="regName" required placeholder="e.g. Alex Sharma" />
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail">Email Address *</label>
+            <input type="email" id="regEmail" required placeholder="e.g. alex@medicaps.ac.in" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="regCollege">College / Dept *</label>
+              <input type="text" id="regCollege" required placeholder="e.g. CSE - Medicaps" />
+            </div>
+
+            <div class="form-group">
+              <label for="regYear">Year of Study *</label>
+              <select id="regYear" required>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regGithub">GitHub Username (Optional)</label>
+            <input type="text" id="regGithub" placeholder="e.g. alex-sharma" />
+          </div>
+
+          <div class="form-group">
+            <label for="regExp">Open Source Experience Level</label>
+            <select id="regExp">
+              <option value="Complete Beginner">Complete Beginner (First Time)</option>
+              <option value="Used Git Once">Used Git Once / Basic Knowledge</option>
+              <option value="Active Contributor">Active Contributor</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn--peach btn--full btn--lg">
+            Complete Registration & Generate Ticket Pass 🎟
+          </button>
+        </form>
+      </div>
+
+      <!-- Ticket Success Pass View -->
+      <div id="ticketPassView" class="hidden">
+        <div class="modal-header text-center">
+          <span class="mono-tag mono-tag--green">🎉 REGISTRATION CONFIRMED!</span>
+          <h2 class="modal-title">Your Event Pass is Ready</h2>
+          <p class="modal-subtitle">Save this pass. Zoom link will be sent to your email!</p>
+        </div>
+
+        <div class="digital-ticket" id="digitalTicketCard">
+          <div class="ticket-header">
+            <div class="ticket-logo">HACKTOBERFEST 2026</div>
+            <div class="ticket-org">ACM MEDICAPS</div>
+          </div>
+          <div class="ticket-body">
+            <div class="ticket-user">
+              <span class="label">ATTENDEE</span>
+              <h3 id="ticketName">Alex Sharma</h3>
+              <p id="ticketEmail">alex@medicaps.ac.in</p>
+            </div>
+            <div class="ticket-meta">
+              <div>
+                <span class="label">DATE</span>
+                <strong>21 SEPT 2026</strong>
+              </div>
+              <div>
+                <span class="label">TIME</span>
+                <strong>6:00 PM IST</strong>
+              </div>
+              <div>
+                <span class="label">PASS ID</span>
+                <strong id="ticketId">HT26-ACM-9842</strong>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-footer">
+            <div class="qr-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="#1E201E"><path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm-2 12h8v8H2v-8zm2 2v4h4v-4H4zm12-16h8v8h-8V2zm2 2v4h4V4h-4zm-4 8h2v2h-2v-2zm2 2h2v2h-2v-2zm-2 2h2v2h-2v-2zm4 0h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2zm-4 2h2v2h-2v-2zm-6-6h2v2h-2v-2zm2 2h2v2h-2v-2z"/></svg>
+            </div>
+            <div class="ticket-status">
+              <span class="badge-status">VALID PASS</span>
+              <p>ZOOM MEET ACCESS GRANTED</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ticket-actions">
+          <button class="btn btn--peach" onclick="printTicket()">
+            🖨 Print / Save Ticket Pass
+          </button>
+          <button class="btn btn--outline-dark" onclick="closeRegisterModal()">
+            Done & Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- External Libraries from attached code -->
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+
+  <!-- Connected Javascript Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
