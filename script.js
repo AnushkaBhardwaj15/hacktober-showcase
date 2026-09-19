@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const text = splitHeading.innerText;
     const words = text.split(' ');
     splitHeading.innerHTML = words
-      .map((word) => `<span class="word" style="opacity: 0.15;">${word}</span>`)
+      .map((word) => `<span class="word" style="opacity: 0;">${word}</span>`)
       .join(' ');
 
     const wordElements = splitHeading.querySelectorAll('.word');
@@ -207,17 +207,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const wordProgress = index / totalWords;
             const nextWordProgress = (index + 1) / totalWords;
 
-            let opacity = 0.15;
+            let opacity = 0;
             if (progress >= nextWordProgress) {
               opacity = 1;
             } else if (progress >= wordProgress) {
               const fadeProgress = (progress - wordProgress) / (nextWordProgress - wordProgress);
-              opacity = 0.15 + fadeProgress * 0.85;
+              opacity = fadeProgress;
             }
 
             gsap.to(wordEl, {
               opacity: opacity,
-              color: isEnded ? 'var(--text-dark)' : 'var(--text-cream)',
+              color: 'var(--text-dark)',
               duration: 0.1,
               overwrite: true,
             });
