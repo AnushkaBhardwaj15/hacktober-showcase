@@ -195,6 +195,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       ScrollTrigger.create({
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        onUpdate: (self) => {
+          document.querySelector('.hero')?.classList.toggle('hero--dissolved', self.progress >= 0.35);
+        },
+      });
+
+      ScrollTrigger.create({
         trigger: '.hero__content',
         start: 'top 35%',
         end: 'bottom 90%',

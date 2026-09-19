@@ -156,6 +156,11 @@ body {
   box-shadow: 3px 3px 0px rgba(0,0,0,0.5);
 }
 
+.hero.hero--dissolved .btn--outline-light {
+  color: var(--text-dark);
+  border-color: var(--text-dark);
+}
+
 .btn--outline-light:hover {
   background-color: rgba(255, 255, 255, 0.1);
   transform: translate(-2px, -2px);
@@ -506,6 +511,19 @@ body {
 
 .section-header {
   margin-bottom: 3.5rem;
+}
+
+#takeaways .section-header {
+  text-align: center;
+}
+
+#takeaways .section-header .mono-tag {
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  margin-bottom: 0.75rem;
+}
+
+#faqs .section-header {
+  text-align: center;
 }
 
 .section-header__grid {
@@ -1033,12 +1051,18 @@ body {
 
 @media (max-width: 600px) {
   .speaker-profile {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 
   .speaker-avatar {
-    grid-column: 1;
-    grid-row: 2;
+    order: -1;
+    position: static;
+    margin: 0 auto 1.5rem;
+  }
+
+  .speaker-info {
+    padding-right: 0;
   }
 }
 
@@ -1536,8 +1560,8 @@ body {
   }
 
   .footer__links {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .topbar__logo {
