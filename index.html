@@ -20,7 +20,7 @@
   <header class="topbar">
     <div class="topbar__container">
       <a href="#" class="topbar__logo">
-        <span class="pixel-box"></span>
+        <img src="./img/acm-logo.jpg" alt="ACM Medicaps Logo" style="height: 38px; object-fit: contain;" />
         HACKTOBERFEST 26
       </a>
 
@@ -34,9 +34,9 @@
       </nav>
 
       <div class="topbar__actions">
-        <button class="btn btn--peach" id="navRegisterBtn" onclick="openRegisterModal()">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVWnQUFoQAjxw_t6rG9_u82SuNnUCAcvzN87ulPmwBnRnvXg/viewform?pli=1&pli=1" target="_blank" rel="noopener" class="btn btn--peach" id="navRegisterBtn">
           Register Now
-        </button>
+        </a>
       </div>
     </div>
   </header>
@@ -86,9 +86,9 @@
             </p>
 
             <div class="hero__cta-group">
-              <button class="btn btn--peach btn--lg" onclick="openRegisterModal()">
+              <a href="" target="_blank" rel="noopener" class="btn btn--peach btn--lg">
                 🚀 Start Your Open Source Journey
-              </button>
+              </a>
               <a href="#mission" class="btn btn--outline-light btn--lg">
                 Explore Agenda ↓
               </a>
@@ -368,22 +368,27 @@
         <!-- Right Column: Speaker Spotlight Card -->
         <div class="speaker-card nb-card nb-card--yellow" id="speaker">
           <div class="speaker-card__badge">FEATURED SPEAKER</div>
-          <div class="speaker-avatar">
-            <div class="avatar-box">
-              <span class="avatar-initials">HS</span>
-            </div>
-          </div>
-          <h3 class="speaker-name">Mr. Harsh Sahu</h3>
-          <p class="speaker-title">Open Source Mentor & Software Engineer</p>
-          <p class="speaker-bio">
-            Passionate about democratizing developer education, Mr. Harsh Sahu has guided hundreds of students in making their first open-source contributions and building real-world software careers.
-          </p>
+          <div class="speaker-profile">
+            <div class="speaker-info">
+              <h3 class="speaker-name">Mr. Harsh Sahu</h3>
+              <p class="speaker-title">Open Source Mentor & Software Engineer</p>
+              <p class="speaker-bio">
+                Passionate about democratizing developer education, Mr. Harsh Sahu has guided hundreds of students in making their first open-source contributions and building real-world software careers.
+              </p>
 
-          <div class="speaker-topics">
-            <span class="topic-chip">Git & GitHub Basics</span>
-            <span class="topic-chip">PR Guidelines</span>
-            <span class="topic-chip">Good First Issues</span>
-            <span class="topic-chip">Hacktoberfest Perks</span>
+              <div class="speaker-topics">
+                <span class="topic-chip">Git & GitHub Basics</span>
+                <span class="topic-chip">PR Guidelines</span>
+                <span class="topic-chip">Good First Issues</span>
+                <span class="topic-chip">Hacktoberfest Perks</span>
+              </div>
+            </div>
+
+            <div class="speaker-avatar">
+              <div class="avatar-box">
+                <img class="speaker-photo" src="./img/speaker.jpeg" alt="Mr. Harsh Sahu speaking at a workshop" />
+              </div>
+            </div>
           </div>
 
           <div class="speaker-ask-box">
@@ -394,6 +399,7 @@
             </div>
             <div id="questionFeedback" class="feedback-msg"></div>
           </div>
+
         </div>
 
       </div>
@@ -418,9 +424,9 @@
             <div class="aud-item">⚡ <strong>Curious Beginners:</strong> No prior git experience needed — we start from scratch!</div>
           </div>
           <div class="audience-cta">
-            <button class="btn btn--peach btn--lg" onclick="openRegisterModal()">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVWnQUFoQAjxw_t6rG9_u82SuNnUCAcvzN87ulPmwBnRnvXg/viewform?pli=1&pli=1" target="_blank" rel="noopener" class="btn btn--peach btn--lg">
               Register Free For Workshop
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -495,7 +501,7 @@
       <div class="footer__top">
         <div class="footer__brand">
           <div class="topbar__logo">
-            <span class="pixel-box"></span>
+            <img src="./img/acm-logo.png" alt="ACM Medicaps Logo" style="height: 38px; object-fit: contain;" />
             HACKTOBERFEST 26
           </div>
           <p class="footer__desc">
@@ -536,123 +542,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- ================= REGISTRATION MODAL & TICKET GENERATOR ================= -->
-  <div class="modal-overlay" id="registerModal" aria-hidden="true">
-    <div class="modal-card nb-card nb-card--white">
-      <button class="modal-close-btn" onclick="closeRegisterModal()" aria-label="Close modal">×</button>
-
-      <div id="registrationFormView">
-        <div class="modal-header">
-          <span class="mono-tag">EVENT REGISTRATION</span>
-          <h2 class="modal-title">⭐ Opensource × Hacktoberfest 2026</h2>
-          <p class="modal-subtitle">ACM Medicaps University • 21st Sept 2026, 6:00 PM IST</p>
-        </div>
-
-        <form id="regForm" onsubmit="handleRegistration(event)">
-          <div class="form-group">
-            <label for="regName">Full Name *</label>
-            <input type="text" id="regName" required placeholder="e.g. Alex Sharma" />
-          </div>
-
-          <div class="form-group">
-            <label for="regEmail">Email Address *</label>
-            <input type="email" id="regEmail" required placeholder="e.g. alex@medicaps.ac.in" />
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="regCollege">College / Dept *</label>
-              <input type="text" id="regCollege" required placeholder="e.g. CSE - Medicaps" />
-            </div>
-
-            <div class="form-group">
-              <label for="regYear">Year of Study *</label>
-              <select id="regYear" required>
-                <option value="1st Year">1st Year</option>
-                <option value="2nd Year">2nd Year</option>
-                <option value="3rd Year">3rd Year</option>
-                <option value="4th Year">4th Year</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="regGithub">GitHub Username (Optional)</label>
-            <input type="text" id="regGithub" placeholder="e.g. alex-sharma" />
-          </div>
-
-          <div class="form-group">
-            <label for="regExp">Open Source Experience Level</label>
-            <select id="regExp">
-              <option value="Complete Beginner">Complete Beginner (First Time)</option>
-              <option value="Used Git Once">Used Git Once / Basic Knowledge</option>
-              <option value="Active Contributor">Active Contributor</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn btn--peach btn--full btn--lg">
-            Complete Registration & Generate Ticket Pass 🎟
-          </button>
-        </form>
-      </div>
-
-      <!-- Ticket Success Pass View -->
-      <div id="ticketPassView" class="hidden">
-        <div class="modal-header text-center">
-          <span class="mono-tag mono-tag--green">🎉 REGISTRATION CONFIRMED!</span>
-          <h2 class="modal-title">Your Event Pass is Ready</h2>
-          <p class="modal-subtitle">Save this pass. Zoom link will be sent to your email!</p>
-        </div>
-
-        <div class="digital-ticket" id="digitalTicketCard">
-          <div class="ticket-header">
-            <div class="ticket-logo">HACKTOBERFEST 2026</div>
-            <div class="ticket-org">ACM MEDICAPS</div>
-          </div>
-          <div class="ticket-body">
-            <div class="ticket-user">
-              <span class="label">ATTENDEE</span>
-              <h3 id="ticketName">Alex Sharma</h3>
-              <p id="ticketEmail">alex@medicaps.ac.in</p>
-            </div>
-            <div class="ticket-meta">
-              <div>
-                <span class="label">DATE</span>
-                <strong>21 SEPT 2026</strong>
-              </div>
-              <div>
-                <span class="label">TIME</span>
-                <strong>6:00 PM IST</strong>
-              </div>
-              <div>
-                <span class="label">PASS ID</span>
-                <strong id="ticketId">HT26-ACM-9842</strong>
-              </div>
-            </div>
-          </div>
-          <div class="ticket-footer">
-            <div class="qr-placeholder">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="#1E201E"><path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm-2 12h8v8H2v-8zm2 2v4h4v-4H4zm12-16h8v8h-8V2zm2 2v4h4V4h-4zm-4 8h2v2h-2v-2zm2 2h2v2h-2v-2zm-2 2h2v2h-2v-2zm4 0h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2zm-4 2h2v2h-2v-2zm-6-6h2v2h-2v-2zm2 2h2v2h-2v-2z"/></svg>
-            </div>
-            <div class="ticket-status">
-              <span class="badge-status">VALID PASS</span>
-              <p>ZOOM MEET ACCESS GRANTED</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="ticket-actions">
-          <button class="btn btn--peach" onclick="printTicket()">
-            🖨 Print / Save Ticket Pass
-          </button>
-          <button class="btn btn--outline-dark" onclick="closeRegisterModal()">
-            Done & Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- External Libraries from attached code -->
   <!-- GSAP & ScrollTrigger -->

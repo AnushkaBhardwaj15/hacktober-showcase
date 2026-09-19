@@ -201,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         onUpdate: (self) => {
           const progress = self.progress;
           const totalWords = wordElements.length;
+          const isEnded = progress >= 0.99;
 
           wordElements.forEach((wordEl, index) => {
             const wordProgress = index / totalWords;
@@ -216,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             gsap.to(wordEl, {
               opacity: opacity,
+              color: isEnded ? 'var(--text-dark)' : 'var(--text-cream)',
               duration: 0.1,
               overwrite: true,
             });
@@ -363,58 +365,11 @@ function runSimStep(stepNum) {
   });
 }
 
-/* ==========================================================================
-   6. REGISTRATION MODAL & TICKET PASS GENERATOR
-   ========================================================================== */
-function openRegisterModal() {
-  const modal = document.getElementById('registerModal');
-  if (modal) {
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-}
+/* Modal functions removed */
 
-function closeRegisterModal() {
-  const modal = document.getElementById('registerModal');
-  if (modal) {
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-}
-
-function handleRegistration(event) {
-  event.preventDefault();
-
-  const name = document.getElementById('regName').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const college = document.getElementById('regCollege').value.trim();
-  const year = document.getElementById('regYear').value;
-
-  if (!name || !email) return;
-
-  // Generate Unique Ticket Pass ID
-  const passIdNumber = Math.floor(1000 + Math.random() * 9000);
-  const ticketId = `HT26-ACM-${passIdNumber}`;
-
-  // Update Ticket Pass View Elements
-  document.getElementById('ticketName').innerText = name;
-  document.getElementById('ticketEmail').innerText = email;
-  document.getElementById('ticketId').innerText = ticketId;
-
-  // Switch Views
-  document.getElementById('registrationFormView').classList.add('hidden');
-  document.getElementById('ticketPassView').classList.remove('hidden');
-}
-
-function printTicket() {
-  window.print();
-}
-
-/* ==========================================================================
+/* ========================================================================
    7. SPEAKER QUESTION SUBMISSION
-   ========================================================================== */
+   ======================================================================== */
 function submitSpeakerQuestion() {
   const input = document.getElementById('speakerQuestion');
   const feedback = document.getElementById('questionFeedback');

@@ -905,13 +905,22 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.speaker-profile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: 1.25rem;
+  align-items: start;
+}
+
 .speaker-avatar {
-  margin-bottom: 1.25rem;
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
 }
 
 .avatar-box {
-  width: 90px;
-  height: 90px;
+  width: 150px;
+  height: 180px;
   background-color: var(--accent-peach);
   border: 2px solid var(--border-dark);
   box-shadow: 3px 3px 0px var(--shadow-dark);
@@ -919,6 +928,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.speaker-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.speaker-info {
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .avatar-initials {
@@ -953,7 +974,7 @@ body {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1.75rem;
+  margin-bottom: 0;
 }
 
 .topic-chip {
@@ -994,6 +1015,17 @@ body {
   margin-top: 0.5rem;
   color: #15803D;
   font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .speaker-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .speaker-avatar {
+    grid-column: 1;
+    grid-row: 2;
+  }
 }
 
 /* ==========================================================================
