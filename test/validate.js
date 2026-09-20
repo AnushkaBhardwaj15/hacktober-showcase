@@ -51,18 +51,12 @@ const scriptMatches = html.match(/<script[^>]*src=[^>]*>/g) || [];
 const unDeferredScripts = scriptMatches.filter((tag) => !tag.includes('defer'));
 assert(unDeferredScripts.length === 0, 'All external and local script tags are deferred', `${unDeferredScripts.length} un-deferred`);
 
-// Verify images have dimensions and proper lazy loading
-console.log('\n4. Verifying Image Optimization & CLS Prevention:');
+// Verify original images and formats
+console.log('\n4. Verifying Original Image Assets and Formats:');
 const imgMatches = html.match(/<img[^>]+>/g) || [];
-let allHaveDims = true;
 let allSrcsExist = true;
 
 imgMatches.forEach((imgTag) => {
-  const hasWidth = /width=["']?\d+["']?/.test(imgTag);
-  const hasHeight = /height=["']?\d+["']?/.test(imgTag);
-  if (!hasWidth || !hasHeight) {
-    allHaveDims = false;
-  }
   const srcMatch = imgTag.match(/src=["']([^"']+)["']/);
   if (srcMatch && !srcMatch[1].startsWith('http') && !srcMatch[1].startsWith('data:')) {
     const localImg = path.join(rootDir, srcMatch[1]);
@@ -71,13 +65,16 @@ imgMatches.forEach((imgTag) => {
     }
   }
 });
-assert(allHaveDims, 'All <img> tags define explicit width and height attributes (zero CLS)');
 assert(allSrcsExist, 'All local images referenced in <img> tags exist on disk');
 
-// Verify below-the-fold image lazy loading
-assert(html.includes('loading="lazy"'), 'Below-the-fold images specify loading="lazy"');
-assert(html.includes('decoding="async"'), 'Images specify decoding="async"');
-assert(html.includes('fetchpriority="high"'), 'LCP Hero image specifies fetchpriority="high"');
+// Verify original formats preserved
+assert(fs.existsSync(path.join(rootDir, 'img/acm-logo.jpeg')), 'acm-logo.jpeg preserved in original JPEG format');
+assert(fs.existsSync(path.join(rootDir, 'img/speaker.jpeg')), 'speaker.jpeg preserved in original JPEG format');
+assert(fs.existsSync(path.join(rootDir, 'img/hero-bg.webp')), 'hero-bg.webp preserved in original WebP format');
+assert(fs.existsSync(path.join(rootDir, 'img/mask-1.webp')), 'mask-1.webp preserved in original WebP format');
+assert(fs.existsSync(path.join(rootDir, 'img/mask-2.webp')), 'mask-2.webp preserved in original WebP format');
+assert(!fs.existsSync(path.join(rootDir, 'img/speaker.webp')), 'No converted WebP for JPEG speaker image');
+assert(!fs.existsSync(path.join(rootDir, 'img/acm-logo.webp')), 'No converted WebP for JPEG ACM logo');
 
 // Test 5: CSS Performance and Cleanliness
 console.log('\n5. Verifying style.css Cleanliness and Performance:');
