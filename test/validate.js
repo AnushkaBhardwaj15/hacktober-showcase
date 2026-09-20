@@ -82,6 +82,10 @@ const css = fs.readFileSync(path.join(rootDir, 'style.css'), 'utf-8');
 assert(!css.includes('.modal-overlay'), 'Orphaned modal CSS (.modal-overlay) removed');
 assert(!css.includes('.digital-ticket'), 'Orphaned ticket pass CSS (.digital-ticket) removed');
 assert(css.includes('content-visibility: auto'), 'Modern content-visibility performance optimization present');
+assert(html.includes('id="exploreAgendaBtn"') || html.includes('Explore Agenda ↓'), 'Explore Agenda CTA button exists in index.html');
+assert(css.includes('.btn--ivory'), 'style.css defines .btn--ivory for solid neo-brutalist button');
+assert(css.includes('#F6F2E8'), 'Explore Agenda button uses warm ivory solid background #F6F2E8');
+assert(!css.includes('.hero.hero--dissolved .btn--outline-light'), 'No scroll-dissolved modifier overriding Explore Agenda button');
 
 // Test 6: Health Endpoint
 console.log('\n6. Verifying Load Balancer Health Endpoint:');
@@ -128,6 +132,21 @@ teamMembersData.forEach((m, idx) => {
   }
 });
 assert(allMembersValid, 'All 6 team members have valid name, designation, and existing image assets');
+
+// Verify hierarchy: Saransh Sharma is Technical Head (1st), and 5 Technical Executives are sorted alphabetically by first name
+assert(
+  teamMembersData[0]?.name === 'Saransh Sharma' && teamMembersData[0]?.designation === 'Technical Head',
+  'Saransh Sharma is positioned first as Technical Head'
+);
+
+const executives = teamMembersData.slice(1);
+const allExecutivesRole = executives.length === 5 && executives.every((m) => m.designation === 'Technical Executive');
+assert(allExecutivesRole, 'All remaining 5 members have designation "Technical Executive"');
+
+const executiveNames = executives.map((m) => m.name);
+const sortedNames = [...executiveNames].sort((a, b) => a.localeCompare(b));
+const isAlphabetical = JSON.stringify(executiveNames) === JSON.stringify(sortedNames);
+assert(isAlphabetical, 'Technical Executives are sorted alphabetically by first name');
 
 // Verify tech-team/index.html exists and contains essential sections
 const techTeamHtmlPath = path.join(rootDir, 'tech-team', 'index.html');

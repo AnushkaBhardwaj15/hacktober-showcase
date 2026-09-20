@@ -149,22 +149,45 @@ body {
   box-shadow: 2px 2px 0px var(--shadow-dark);
 }
 
+.btn--ivory,
 .btn--outline-light {
-  background-color: transparent;
-  color: var(--text-cream);
-  border-color: var(--text-cream);
-  box-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+  background-color: #F6F2E8;
+  color: #1F1F1F;
+  border: 2px solid #1F1F1F;
+  box-shadow: 3px 3px 0px #1F1F1F;
+  opacity: 1;
 }
 
-.hero.hero--dissolved .btn--outline-light {
-  color: var(--text-dark);
-  border-color: var(--text-dark);
-}
-
+.btn--ivory:hover,
 .btn--outline-light:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #ECE7DC;
+  color: #1F1F1F;
+  border-color: #1F1F1F;
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 0px #1F1F1F;
+  opacity: 1;
+}
+
+.btn--ivory:active,
+.btn--outline-light:active {
+  background-color: #E2DDD0;
+  color: #1F1F1F;
+  border-color: #1F1F1F;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #1F1F1F;
+  opacity: 1;
+}
+
+.btn--ivory:focus,
+.btn--ivory:focus-visible,
+.btn--outline-light:focus,
+.btn--outline-light:focus-visible {
+  outline: 2px solid #1F1F1F;
+  outline-offset: 3px;
+  background-color: #F6F2E8;
+  color: #1F1F1F;
+  border-color: #1F1F1F;
+  opacity: 1;
 }
 
 .btn--outline-dark {
