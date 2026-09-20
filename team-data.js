@@ -9,37 +9,37 @@ const teamMembers = [
     id: "member-1",
     name: "Saransh Sharma",
     designation: "Technical Head",
-    image: "img/team/member-1.svg"
+    image: "img/team/1.jpg"
   },
   {
     id: "member-2",
     name: "Abhi Dubey",
     designation: "Technical Executive",
-    image: "img/team/member-2.svg"
+    image: "img/team/2.jpg"
   },
   {
     id: "member-3",
     name: "Anushka Bharadwaj",
     designation: "Technical Executive",
-    image: "img/team/member-3.svg"
+    image: "img/team/3.jpg"
   },
   {
     id: "member-4",
     name: "Atharv Singhai",
     designation: "Technical Executive",
-    image: "img/team/member-4.svg"
+    image: "img/team/4.jpg"
   },
   {
     id: "member-5",
     name: "Poojak Bhamawat",
     designation: "Technical Executive",
-    image: "img/team/member-5.svg"
+    image: "img/team/5.jpg"
   },
   {
     id: "member-6",
     name: "Soumya Rathore",
     designation: "Technical Executive",
-    image: "img/team/member-6.svg"
+    image: "img/team/6.jpg"
   }
 ];
 
