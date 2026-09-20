@@ -206,10 +206,9 @@ External HTTP Navigation Endpoints:
 
 Every performance optimization in this codebase is grounded in the repository's actual implementation:
 
-1. **Image Compression & Optimization**:
-   - `img/hero-bg.webp` compressed from 1.73 MB to **690 KB** (a **60.2% bandwidth reduction / ~1.04 MB saved**).
-   - Total repository image weight reduced from **3.10 MB down to 1.96 MB** (36.8% reduction) while preserving full visual fidelity.
-   - Originals preserved in `img/_originals/`.
+1. **Original Image Formats Preserved**:
+   - Original image assets and source formats are intentionally preserved: JPEG remains JPEG (`acm-logo.jpeg`, `speaker.jpeg`) and WebP remains WebP (`hero-bg.webp`, `mask-1.webp`, `mask-2.webp`).
+   - No automated format transcoding (e.g. JPEG → WebP or JPEG → AVIF) is performed, preserving source file fidelity.
 2. **Cumulative Layout Shift (CLS) Elimination**:
    - All `<img>` tags declare explicit `width` and `height` attributes, reserving layout aspect ratios before images finish downloading.
 3. **Largest Contentful Paint (LCP) Acceleration**:
@@ -235,6 +234,22 @@ Every performance optimization in this codebase is grounded in the repository's 
     - Dedicated `/health.html` probe and completely stateless client-side execution.
 13. **Edge Caching & HTTP Compression**:
     - Ready-to-deploy configurations for Netlify, Cloudflare Pages (`_headers`), Vercel (`vercel.json`), and Nginx (`nginx.conf`) with 1-year immutable caching for static media and Gzip/Brotli compression.
+
+---
+
+## GitHub Pages Deployment
+
+The website is configured for automated CI/CD deployment to GitHub Pages via GitHub Actions:
+
+- **Deployment Branch**: `Kirito`
+- **Automation**: GitHub Actions automatically triggers a rebuild and redeployment on every `git push` to the `Kirito` branch.
+- **Manual Deployment**: Manual triggering is enabled via `workflow_dispatch` in the Actions tab.
+- **Build Command**: `npm run build` (runs `node test/validate.js` to verify syntax, assets, and markup).
+- **Build Output Directory**: `.` (the static site root directory containing `index.html`).
+- **Where Site is Served**: [https://saransh-sh.github.io/hacktober-showcase/](https://saransh-sh.github.io/hacktober-showcase/)
+- **Required Repository Settings**: In **Settings → Pages**, the Build and deployment source is set to **GitHub Actions** (`build_type: workflow`).
+- **Required Actions Permissions / Secrets**: The workflow defines `contents: read`, `pages: write`, and `id-token: write`. No private API keys or secrets are required.
+- **Image Format Preservation**: Images are intentionally preserved in their original formats (`.jpeg`, `.webp`) without automated conversion.
 
 ---
 

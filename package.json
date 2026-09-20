@@ -2,11 +2,11 @@
   "name": "hacktober-showcase",
   "version": "1.0.0",
   "description": "Opensource × Hacktoberfest 2026 showcase site by ACM Medicaps Student Chapter",
-  "private": true,
   "scripts": {
+    "build": "node test/validate.js",
+    "test": "node test/validate.js",
     "dev": "python3 -m http.server 8080",
-    "start": "python3 -m http.server 8080",
-    "test": "node test/validate.js"
+    "start": "python3 -m http.server 8080"
   },
   "keywords": [
     "hacktoberfest",
