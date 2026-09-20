@@ -102,6 +102,49 @@ assert(scriptContent.includes('https://api.github.com/users/hacktober2k26/repos'
 assert(!scriptContent.includes('const repositories = [') && !scriptContent.includes('const repos = ['), 'Repositories are not hardcoded in JavaScript');
 assert(!scriptContent.includes('ghp_') && !scriptContent.includes('github_pat_'), 'No private GitHub token is exposed');
 
+// Test 8: Technical Team Page & Data Structure
+console.log('\n8. Verifying Technical Team Page & Data Structure:');
+const teamDataPath = path.join(rootDir, 'team-data.js');
+assert(fs.existsSync(teamDataPath), 'team-data.js exists');
+
+let teamMembersData = [];
+try {
+  const { teamMembers } = require(teamDataPath);
+  teamMembersData = teamMembers;
+  assert(Array.isArray(teamMembersData) && teamMembersData.length === 6, 'team-data.js defines exactly 6 team members');
+} catch (e) {
+  assert(false, 'team-data.js exports teamMembers array', e.message);
+}
+
+// Verify each member has name, designation, image and image exists
+let allMembersValid = true;
+teamMembersData.forEach((m, idx) => {
+  if (!m.name || !m.designation || !m.image) {
+    allMembersValid = false;
+  }
+  const imgPath = path.join(rootDir, m.image);
+  if (!fs.existsSync(imgPath)) {
+    allMembersValid = false;
+  }
+});
+assert(allMembersValid, 'All 6 team members have valid name, designation, and existing image assets');
+
+// Verify tech-team/index.html exists and contains essential sections
+const techTeamHtmlPath = path.join(rootDir, 'tech-team', 'index.html');
+assert(fs.existsSync(techTeamHtmlPath), 'tech-team/index.html page exists');
+const techTeamHtml = fs.readFileSync(techTeamHtmlPath, 'utf-8');
+assert(techTeamHtml.includes('id="tech-team"'), 'tech-team/index.html contains #tech-team section');
+assert(techTeamHtml.includes('id="teamGrid"'), 'tech-team/index.html contains #teamGrid');
+
+// Verify footer link in index.html
+assert(html.includes('Tech Team') && html.includes('tech-team'), 'index.html footer contains "Tech Team" quick link');
+
+// Verify CSS rules for team grid and responsive breakpoints
+assert(css.includes('.team-grid'), 'style.css defines .team-grid');
+assert(css.includes('.team-card'), 'style.css defines .team-card');
+assert(css.includes('@media (max-width: 992px)'), 'style.css defines tablet breakpoint for team grid');
+assert(css.includes('@media (max-width: 640px)'), 'style.css defines mobile breakpoint for team grid');
+
 console.log(`\n========================================`);
 console.log(`Verification Complete: ${passed} passed, ${failed} failed.`);
 console.log(`========================================\n`);
