@@ -145,6 +145,30 @@ assert(css.includes('.team-card'), 'style.css defines .team-card');
 assert(css.includes('@media (max-width: 992px)'), 'style.css defines tablet breakpoint for team grid');
 assert(css.includes('@media (max-width: 640px)'), 'style.css defines mobile breakpoint for team grid');
 
+// Test 9: Homepage Animated Marquee Banner & UI Density Verification
+console.log('\n9. Verifying Homepage Animated Marquee Banner & UI Density:');
+assert(html.includes('class="tech-marquee-banner"'), 'index.html contains .tech-marquee-banner');
+
+// Verify banner location is between #details and audience section
+const detailsIndex = html.indexOf('id="details"');
+const bannerIndex = html.indexOf('class="tech-marquee-banner"');
+const audienceIndex = html.indexOf('TARGET AUDIENCE');
+assert(detailsIndex < bannerIndex && bannerIndex < audienceIndex, 'Banner is placed precisely between Event/Speaker section and Target Audience section');
+
+// Verify banner is NOT in tech-team/index.html
+assert(!techTeamHtml.includes('class="tech-marquee-banner"'), 'Banner is strictly on the homepage and NOT on /tech-team page');
+
+// Verify CSS animation and reduced-motion support
+assert(css.includes('.tech-marquee-banner'), 'style.css defines .tech-marquee-banner');
+assert(css.includes('@keyframes marqueeScroll'), 'style.css defines marqueeScroll keyframes');
+assert(css.includes('prefers-reduced-motion'), 'style.css respects prefers-reduced-motion');
+
+// Verify no scale or zoom hacks are used
+assert(!css.includes('transform: scale(0.') && !css.includes('zoom: 0.'), 'No transform: scale() or zoom: CSS hacks used');
+assert(css.includes('font-size: 14.5px'), 'style.css sets refined 14.5px base font size');
+assert(css.includes('max-width: 1160px'), 'style.css sets compact 1160px container max-width');
+assert(css.includes('padding: 3.75rem 0'), 'style.css reduces section padding from 6rem to 3.75rem');
+
 console.log(`\n========================================`);
 console.log(`Verification Complete: ${passed} passed, ${failed} failed.`);
 console.log(`========================================\n`);

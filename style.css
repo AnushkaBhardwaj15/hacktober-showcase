@@ -38,7 +38,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 14.5px;
   background-color: var(--bg-dark);
   color: var(--text-dark);
   overflow-x: hidden;
@@ -62,11 +62,11 @@ body {
   z-index: 100;
   background-color: var(--bg-dark-top);
   border-bottom: 2px solid var(--border-dark);
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.5rem;
 }
 
 .topbar__container {
-  max-width: 1280px;
+  max-width: 1160px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -195,7 +195,7 @@ body {
 
 .hero__row {
   width: 100%;
-  min-height: 175vh;
+  min-height: 140vh;
   position: relative;
 }
 
@@ -430,7 +430,7 @@ body {
    SECTIONS GENERAL
    ========================================================================== */
 .section {
-  padding: 6rem 0;
+  padding: 3.75rem 0;
   position: relative;
 }
 
@@ -450,7 +450,7 @@ body {
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1160px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -458,11 +458,11 @@ body {
 .mono-tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 2px;
   color: var(--accent-peach);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
   text-transform: uppercase;
 }
 
@@ -476,11 +476,11 @@ body {
 
 .display-heading {
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-size: clamp(1.85rem, 3.2vw, 2.75rem);
   font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  margin-bottom: 1rem;
+  line-height: 1.12;
+  letter-spacing: -0.75px;
+  margin-bottom: 0.85rem;
 }
 
 .display-heading.center {
@@ -496,21 +496,21 @@ body {
 }
 
 .body-lead {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--text-muted-dark);
   max-width: 680px;
 }
 
 .sub-heading {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text-muted-dark);
   text-align: center;
   max-width: 600px;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 2rem auto;
 }
 
 .section-header {
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.25rem;
 }
 
 #takeaways .section-header {
@@ -560,7 +560,7 @@ body {
 .nb-card {
   border: 2px solid var(--border-dark);
   border-radius: 4px;
-  padding: 2.25rem;
+  padding: 1.6rem 1.85rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1067,23 +1067,130 @@ body {
 }
 
 /* ==========================================================================
+   HOMEPAGE ANIMATED TECH TEAM BANNER (Visual Transition Strip)
+   ========================================================================== */
+.tech-marquee-banner {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  text-decoration: none;
+  background-color: var(--accent-yellow);
+  color: var(--text-dark);
+  border-top: 3px solid var(--border-dark);
+  border-bottom: 3px solid var(--border-dark);
+  box-shadow: 0 5px 0 var(--shadow-dark);
+  padding: 1.15rem 0;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.tech-marquee-banner:hover {
+  background-color: #f7c033;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marqueeScroll 26s linear infinite;
+}
+
+.tech-marquee-banner:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-right: 1.25rem;
+  white-space: nowrap;
+}
+
+.marquee-tag {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 800;
+  background-color: var(--text-dark);
+  color: var(--bg-cream);
+  padding: 0.3rem 0.65rem;
+  border-radius: 3px;
+  letter-spacing: 1.5px;
+  border: 1.5px solid var(--border-dark);
+  box-shadow: 2px 2px 0 var(--border-dark);
+}
+
+.marquee-text {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  /* 3D Extruded Layered Text Shadow */
+  text-shadow: 2px 2px 0 #FFFFFF, 3px 3px 0 var(--border-dark);
+}
+
+.marquee-sep {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--accent-peach);
+  margin: 0 0.25rem;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-marquee-banner {
+    padding: 0.75rem 0;
+  }
+
+  .marquee-text {
+    font-size: 1.1rem;
+    text-shadow: 1.5px 1.5px 0 #FFFFFF, 2.5px 2.5px 0 var(--border-dark);
+  }
+
+  .marquee-tag {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+/* ==========================================================================
    AUDIENCE SECTION
    ========================================================================== */
 .audience-box {
-  padding: 3rem;
+  padding: 2rem 2.25rem;
 }
 
 .audience-box__header h2 {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 1.65rem;
   font-weight: 800;
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 0.4rem;
+  margin-bottom: 1.25rem;
 }
 
 .audience-desc {
-  font-size: 1.15rem;
-  margin-bottom: 2rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
   line-height: 1.6;
 }
 
@@ -1294,13 +1401,13 @@ body {
    TECHNICAL TEAM PAGE STYLES
    ========================================================================== */
 .team-section {
-  padding: 5rem 0 6rem 0;
+  padding: 4rem 0 5rem 0;
   background-color: var(--bg-cream);
   min-height: calc(100vh - 400px);
 }
 
 .team-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2.25rem;
 }
 
 .team-header .mono-tag {
@@ -1310,7 +1417,7 @@ body {
 .team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .team-card {
@@ -1401,14 +1508,14 @@ body {
   background-color: var(--bg-dark-top);
   color: var(--text-cream);
   border-top: 2px solid var(--border-dark);
-  padding: 4rem 0 2rem 0;
+  padding: 3rem 0 1.5rem 0;
 }
 
 .footer__top {
   display: grid;
   grid-template-columns: 1.5fr 2fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
+  gap: 2.25rem;
+  margin-bottom: 2.25rem;
 }
 
 @media (max-width: 768px) {
