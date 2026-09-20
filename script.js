@@ -422,7 +422,7 @@ function submitSpeakerQuestion() {
   }
 }
 
-// Support Enter key submission
+// Support Enter key submission and initialize GitHub repos
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('speakerQuestion');
   if (input) {
@@ -433,4 +433,83 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Initialize dynamic GitHub repository quick-links
+  initGitHubRepos();
 });
+
+/* ==========================================================================
+   GITHUB REPOSITORIES DYNAMIC FETCHER
+   Fetches public repositories for hacktober2k26 via public GitHub API
+   ========================================================================== */
+function initGitHubRepos() {
+  const repoListEl = document.getElementById('githubRepoList');
+  if (!repoListEl) return;
+
+  // Render subtle skeleton loading state
+  repoListEl.innerHTML = `
+    <div class="repo-card repo-card--skeleton" aria-hidden="true">
+      <span class="repo-skeleton-line"></span>
+      <span class="repo-card__arrow">↗</span>
+    </div>
+    <div class="repo-card repo-card--skeleton" aria-hidden="true">
+      <span class="repo-skeleton-line"></span>
+      <span class="repo-card__arrow">↗</span>
+    </div>
+    <div class="repo-card repo-card--skeleton" aria-hidden="true">
+      <span class="repo-skeleton-line"></span>
+      <span class="repo-card__arrow">↗</span>
+    </div>
+    <div class="repo-card repo-card--skeleton" aria-hidden="true">
+      <span class="repo-skeleton-line"></span>
+      <span class="repo-card__arrow">↗</span>
+    </div>
+  `;
+
+  fetch('https://api.github.com/users/hacktober2k26/repos')
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`GitHub API HTTP ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((repos) => {
+      if (!Array.isArray(repos) || repos.length === 0) {
+        throw new Error('No repositories returned');
+      }
+
+      repoListEl.innerHTML = '';
+      repos.forEach((repo) => {
+        const link = document.createElement('a');
+        link.className = 'repo-card';
+        link.href = repo.html_url || `https://github.com/hacktober2k26/${encodeURIComponent(repo.name)}`;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', `${repo.name} repository on GitHub`);
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'repo-card__name';
+        nameSpan.textContent = repo.name;
+
+        const arrowSpan = document.createElement('span');
+        arrowSpan.className = 'repo-card__arrow';
+        arrowSpan.setAttribute('aria-hidden', 'true');
+        arrowSpan.textContent = '↗';
+
+        link.appendChild(nameSpan);
+        link.appendChild(arrowSpan);
+        repoListEl.appendChild(link);
+      });
+    })
+    .catch((err) => {
+      console.warn('Unable to load GitHub repositories:', err.message);
+      repoListEl.innerHTML = `
+        <div class="repo-fallback">
+          <p>Repositories unavailable right now.</p>
+          <a href="https://github.com/hacktober2k26" target="_blank" rel="noopener noreferrer" class="btn btn--outline-dark btn--sm">
+            View on GitHub ↗
+          </a>
+        </div>
+      `;
+    });
+}

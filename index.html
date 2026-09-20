@@ -411,64 +411,80 @@
     </div>
   </section>
 
-  <!-- ================= FAQS SECTION ================= -->
+  <!-- ================= FAQS & REPOSITORIES SECTION ================= -->
   <section class="section section--light" id="faqs">
     <div class="container">
-      <div class="section-header text-center">
-        <span class="mono-tag">FREQUENTLY ASKED QUESTIONS</span>
-        <h2 class="display-heading center">Got Questions? We’ve got answers.</h2>
-      </div>
-
-      <div class="faq-list">
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span>Is this event free to join?</span>
-            <span class="faq-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            Yes! Opensource × Hacktoberfest 2026 organized by ACM Medicaps University is 100% free for all students.
+      <div class="faq-layout">
+        <!-- Left Column: FAQ (~60–65%) -->
+        <div class="faq-layout__col faq-layout__col--faq">
+          <div class="faq-header">
+            <span class="mono-tag">FREQUENTLY ASKED QUESTIONS</span>
+            <h2 class="faq-heading">Got Questions? We’ve got answers.</h2>
           </div>
-        </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span>Do I need prior coding or Git experience?</span>
-            <span class="faq-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            No prior open-source experience is required! We will cover everything from setting up your GitHub account to creating your first pull request.
-          </div>
-        </details>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>Is this event free to join?</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                Yes! Opensource × Hacktoberfest 2026 organized by ACM Medicaps University is 100% free for all students.
+              </div>
+            </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span>How will I join the session on 21st September?</span>
-            <span class="faq-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            The session will take place live on Zoom Meet from 6:00 PM to 8:00 PM IST. The meeting link and calendar invite will be sent directly to your registered email address.
-          </div>
-        </details>
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>Do I need prior coding or Git experience?</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                No prior open-source experience is required! We will cover everything from setting up your GitHub account to creating your first pull request.
+              </div>
+            </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span>Will I get a certificate or digital badge?</span>
-            <span class="faq-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            Yes! All registered participants who attend the session and generate their registration pass will receive an official ACM Medicaps digital certificate of participation.
-          </div>
-        </details>
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>How will I join the session on 21st September?</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                The session will take place live on Zoom Meet from 6:00 PM to 8:00 PM IST. The meeting link and calendar invite will be sent directly to your registered email address.
+              </div>
+            </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span>What is Hacktoberfest?</span>
-            <span class="faq-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            Hacktoberfest is a month-long global celebration of open-source software held every October, encouraging developers of all skill levels to make meaningful pull requests.
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>Will I get a certificate or digital badge?</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                Yes! All registered participants who attend the session and generate their registration pass will receive an official ACM Medicaps digital certificate of participation.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>What is Hacktoberfest?</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                Hacktoberfest is a month-long global celebration of open-source software held every October, encouraging developers of all skill levels to make meaningful pull requests.
+              </div>
+            </details>
           </div>
-        </details>
+        </div>
+
+        <!-- Right Column: GitHub Repositories (~30–35%) -->
+        <div class="faq-layout__col faq-layout__col--repos">
+          <div class="faq-header">
+            <span class="mono-tag">GITHUB REPOSITORIES</span>
+            <h3 class="faq-heading">Featured Repositories</h3>
+          </div>
+          <div class="repo-list" id="githubRepoList" aria-live="polite">
+            <!-- Dynamically loaded from GitHub API -->
+          </div>
+        </div>
       </div>
     </div>
   </section>

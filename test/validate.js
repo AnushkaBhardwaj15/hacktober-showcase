@@ -88,6 +88,20 @@ console.log('\n6. Verifying Load Balancer Health Endpoint:');
 const healthHtml = fs.readFileSync(path.join(rootDir, 'health.html'), 'utf-8');
 assert(healthHtml.includes('Status: Healthy') || healthHtml.includes('OK'), 'health.html contains valid healthy response');
 
+// Test 7: FAQ Two-Column Layout & GitHub Repositories Integration
+console.log('\n7. Verifying FAQ Two-Column Layout & GitHub Dynamic Repositories:');
+const scriptContent = fs.readFileSync(path.join(rootDir, 'script.js'), 'utf-8');
+
+assert(html.includes('class="faq-layout"'), 'index.html contains .faq-layout container');
+assert(html.includes('id="githubRepoList"'), 'index.html contains #githubRepoList for dynamic repos');
+assert(css.includes('.faq-layout'), 'style.css defines .faq-layout grid styling');
+assert(css.includes('.repo-card'), 'style.css defines .repo-card styling');
+assert(css.includes('@media (max-width: 900px)'), 'style.css contains responsive stacking breakpoint');
+assert(scriptContent.includes('initGitHubRepos'), 'script.js implements initGitHubRepos()');
+assert(scriptContent.includes('https://api.github.com/users/hacktober2k26/repos'), 'script.js fetches public GitHub API');
+assert(!scriptContent.includes('const repositories = [') && !scriptContent.includes('const repos = ['), 'Repositories are not hardcoded in JavaScript');
+assert(!scriptContent.includes('ghp_') && !scriptContent.includes('github_pat_'), 'No private GitHub token is exposed');
+
 console.log(`\n========================================`);
 console.log(`Verification Complete: ${passed} passed, ${failed} failed.`);
 console.log(`========================================\n`);
