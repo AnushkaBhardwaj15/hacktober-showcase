@@ -6,7 +6,11 @@
   <title>Opensource × Hacktoberfest 2026 | ACM Medicaps University</title>
   <meta name="description" content="Join ACM Medicaps University for Opensource × Hacktoberfest 2026. Practical session on GitHub, open source ecosystem, and making your first contribution. Speaker: Mr. Harsh Sahu." />
   
-  <!-- Google Fonts: Space Grotesk, Space Mono, Plus Jakarta Sans -->
+  <!-- DNS Prefetch & Preconnect for External CDNs & Fonts -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -21,7 +25,7 @@
   <header class="topbar">
     <div class="topbar__container">
       <a href="#" class="topbar__logo">
-        <img src="./img/acm-logo.jpeg" alt="ACM Medicaps Logo" style="height: 38px; object-fit: contain;" />
+        <img src="./img/acm-logo.jpeg" alt="ACM Medicaps Logo" width="39" height="38" style="height: 38px; width: auto; object-fit: contain;" />
         HACKTOBERFEST 2026
       </a>
 
@@ -45,14 +49,14 @@
   <!-- ================= HERO SECTION (3.js Dissolve + Parallax) ================= -->
   <div data-anim-index class="index">
     <section class="hero" id="overview">
-      <!-- Parallax Leaf/Twig Masks from zip -->
-      <div class="hero__twigs">
-        <img class="hero__twig hero__twig--left" src="./img/mask-1.webp" alt="Decorative leaf asset left" />
-        <img class="hero__twig hero__twig--right" src="./img/mask-2.webp" alt="Decorative leaf asset right" />
+      <!-- Parallax Leaf/Twig Masks -->
+      <div class="hero__twigs" aria-hidden="true">
+        <img class="hero__twig hero__twig--left" src="./img/mask-1.webp" alt="" width="2000" height="2360" decoding="async" />
+        <img class="hero__twig hero__twig--right" src="./img/mask-2.webp" alt="" width="2466" height="2751" decoding="async" />
       </div>
 
       <div class="hero__row">
-        <img class="hero__bg" src="./img/hero-bg.webp" alt="Hero background mesh texture" />
+        <img class="hero__bg" src="./img/hero-bg.webp" alt="Hero background mesh texture" width="3072" height="2400" fetchpriority="high" decoding="async" />
         <canvas class="hero-canvas"></canvas>
 
         <div class="hero__container">
@@ -360,7 +364,7 @@
 
             <div class="speaker-avatar">
               <div class="avatar-box">
-                <img class="speaker-photo" src="./img/speaker.jpeg" alt="Mr. Harsh Sahu speaking at a workshop" />
+                <img class="speaker-photo" src="./img/speaker.jpeg" alt="Mr. Harsh Sahu speaking at a workshop" width="800" height="800" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -475,7 +479,7 @@
       <div class="footer__top">
         <div class="footer__brand">
           <div class="topbar__logo">
-            <img src="./img/acm-logo.jpeg" alt="ACM Medicaps Logo" style="height: 38px; object-fit: contain;" />
+            <img src="./img/acm-logo.jpeg" alt="ACM Medicaps Logo" width="39" height="38" loading="lazy" decoding="async" style="height: 38px; width: auto; object-fit: contain;" />
             HACKTOBERFEST 2026
           </div>
           <p class="footer__desc">
@@ -516,18 +520,18 @@
     </div>
   </footer>
 
-  <!-- External Libraries from attached code -->
+  <!-- External Libraries (Deferred for non-blocking page load) -->
   <!-- GSAP & ScrollTrigger -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 
   <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   
   <!-- Lenis Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
 
   <!-- Connected Javascript Logic -->
-  <script src="script.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>

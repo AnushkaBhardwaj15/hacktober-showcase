@@ -22,9 +22,6 @@ if (typeof Lenis !== 'undefined') {
 
   function raf(time) {
     lenis.raf(time);
-    if (typeof ScrollTrigger !== 'undefined') {
-      ScrollTrigger.update();
-    }
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
@@ -123,18 +120,8 @@ if (canvas && hero && typeof THREE !== 'undefined') {
     canvas,
     alpha: true,
     antialias: false,
+    powerPreference: 'high-performance',
   });
-
-  function resizeCanvas() {
-    if (!hero) return;
-    const width = hero.offsetWidth;
-    const height = hero.offsetHeight;
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  }
-
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
 
   const rgb = hexToRgb(CONFIG.color);
   const geometry = new THREE.PlaneGeometry(2, 2);
@@ -156,26 +143,67 @@ if (canvas && hero && typeof THREE !== 'undefined') {
   scene.add(mesh);
 
   let scrollProgress = 0;
+  let isHeroVisible = true;
+  let needsRender = true;
 
-  function animateThree() {
+  function renderScene() {
     material.uniforms.uProgress.value = scrollProgress;
     renderer.render(scene, camera);
+  }
+
+  // IntersectionObserver to pause rendering when hero is out of view
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isHeroVisible = entry.isIntersecting;
+        if (isHeroVisible) {
+          needsRender = true;
+        }
+      });
+    }, { threshold: 0 });
+    observer.observe(hero);
+  }
+
+  function animateThree() {
+    if (isHeroVisible && needsRender) {
+      renderScene();
+      needsRender = false;
+    }
     requestAnimationFrame(animateThree);
   }
   animateThree();
 
   if (lenis) {
     lenis.on('scroll', ({ scroll }) => {
+      if (!isHeroVisible) return;
       const heroHeight = hero.offsetHeight;
       const windowHeight = window.innerHeight;
       const maxScroll = heroHeight - windowHeight;
-      scrollProgress = Math.min((scroll / maxScroll) * CONFIG.speed, 1.15);
+      const nextProgress = Math.min((scroll / maxScroll) * CONFIG.speed, 1.15);
+      if (Math.abs(nextProgress - scrollProgress) > 0.001) {
+        scrollProgress = nextProgress;
+        needsRender = true;
+      }
     });
   }
 
+  // Throttled single resize handler to prevent layout thrashing
+  let resizeRaf;
+  function handleResize() {
+    if (!hero) return;
+    const width = hero.offsetWidth;
+    const height = hero.offsetHeight;
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    material.uniforms.uResolution.value.set(width, height);
+    needsRender = true;
+  }
+
+  handleResize();
   window.addEventListener('resize', () => {
-    material.uniforms.uResolution.value.set(hero.offsetWidth, hero.offsetHeight);
-  });
+    cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(handleResize);
+  }, { passive: true });
 }
 
 /* ==========================================================================
@@ -210,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
         onUpdate: (self) => {
           const progress = self.progress;
           const totalWords = wordElements.length;
-          const isEnded = progress >= 0.99;
 
           wordElements.forEach((wordEl, index) => {
             const wordProgress = index / totalWords;
@@ -220,16 +247,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (progress >= nextWordProgress) {
               opacity = 1;
             } else if (progress >= wordProgress) {
-              const fadeProgress = (progress - wordProgress) / (nextWordProgress - wordProgress);
-              opacity = fadeProgress;
+              opacity = (progress - wordProgress) / (nextWordProgress - wordProgress);
             }
 
-            gsap.to(wordEl, {
-              opacity: opacity,
-              color: 'var(--text-dark)',
-              duration: 0.1,
-              overwrite: true,
-            });
+            wordEl.style.opacity = opacity;
           });
         },
       });
@@ -400,3 +421,16 @@ function submitSpeakerQuestion() {
     }, 4000);
   }
 }
+
+// Support Enter key submission
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('speakerQuestion');
+  if (input) {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        submitSpeakerQuestion();
+      }
+    });
+  }
+});

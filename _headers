@@ -1,0 +1,36 @@
+# Netlify & Cloudflare Pages Caching and Security Headers Configuration
+
+# Immutable static assets (fonts and images) - 1 year cache
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Static CSS & JS - 30 days cache with revalidation
+/*.css
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*.js
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# HTML pages - Short cache with stale-while-revalidate
+/*.html
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Health check endpoint - no cache
+/health.html
+  Cache-Control: no-cache, no-store, must-revalidate
