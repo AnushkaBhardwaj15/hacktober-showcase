@@ -182,6 +182,11 @@ assert(css.includes('.tech-marquee-banner'), 'style.css defines .tech-marquee-ba
 assert(css.includes('@keyframes marqueeScroll'), 'style.css defines marqueeScroll keyframes');
 assert(css.includes('prefers-reduced-motion'), 'style.css respects prefers-reduced-motion');
 
+assert(html.includes('Liked what you saw? 👀'), 'index.html contains "Liked what you saw? 👀" in banner');
+assert(html.includes('Meet the Tech Team →'), 'index.html contains "Meet the Tech Team →" in banner');
+assert(html.includes('href="./tech-team/" class="tech-marquee-banner"'), 'Tech Team banner links entirely to ./tech-team/');
+assert(fs.existsSync(path.join(rootDir, '.nojekyll')), '.nojekyll exists to bypass Jekyll on GitHub Pages');
+
 // Verify no scale or zoom hacks are used
 assert(!css.includes('transform: scale(0.') && !css.includes('zoom: 0.'), 'No transform: scale() or zoom: CSS hacks used');
 assert(css.includes('font-size: 14.5px'), 'style.css sets refined 14.5px base font size');
