@@ -6,7 +6,7 @@
 
 ## Overview
 
-**Opensource × Hacktoberfest 2026** is a live, practical online workshop designed to introduce university students and beginner developers to the open-source ecosystem, the Git/GitHub collaboration workflow, and the process of making their first meaningful pull request.
+**Opensource ×  Hacktoberfest 2026** is a live, practical online workshop designed to introduce university students and beginner developers to the open-source ecosystem, the Git/GitHub collaboration workflow, and the process of making their first meaningful pull request.
 
 The website serves as the interactive digital hub for the event scheduled for **September 21, 2026 (6:00 PM – 8:00 PM IST)**, featuring guest speaker **Mr. Harsh Sahu** (Open Source Mentor & Software Engineer). It provides event registration, learning outcomes, an interactive 4-step Git simulator terminal, a live countdown clock, speaker spotlight, and event FAQs.
 
