@@ -306,6 +306,7 @@ Whenever code is pushed or merged into `main`, `.github/workflows/deploy-vercel.
 
 ## Development Guidelines
 
+
 1. **Preserve Stateless Architecture**: Never introduce local server session dependencies; keep all page state in the client DOM.
 2. **Asset Discipline**: Always compress new images to WebP/AVIF format before committing. Never commit raw multi-megabyte PNGs or uncompressed originals directly to `img/`.
 3. **Prevent CLS**: Every `<img>` tag must include explicit `width` and `height` attributes.
