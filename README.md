@@ -2,6 +2,13 @@
 
 > Official event landing page for **Opensource × Hacktoberfest 2026**, organized by the **ACM Student Chapter at Medi-Caps University** (Indore, India).
 
+[![Deploy to GitHub Pages](https://github.com/AnushkaBhardwaj15/hacktober-showcase/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/AnushkaBhardwaj15/hacktober-showcase/actions/workflows/deploy-pages.yml)
+[![Build & Validation](https://github.com/AnushkaBhardwaj15/hacktober-showcase/actions/workflows/deploy-vercel.yml/badge.svg)](https://github.com/AnushkaBhardwaj15/hacktober-showcase/actions/workflows/deploy-vercel.yml)
+
+🌐 **Live Deployment (GitHub Pages)**: [https://anushkabhardwaj15.github.io/hacktober-showcase/](https://anushkabhardwaj15.github.io/hacktober-showcase/)  
+👥 **Tech Team Page**: [https://anushkabhardwaj15.github.io/hacktober-showcase/tech-team/](https://anushkabhardwaj15.github.io/hacktober-showcase/tech-team/)  
+🚀 **Production Mirror (Vercel)**: [https://hacktober-showcase.vercel.app](https://hacktober-showcase.vercel.app)
+
 ---
 
 ## Overview
@@ -239,11 +246,12 @@ Every performance optimization in this codebase is grounded in the repository's 
 
 ## Automated CI/CD & Deployments
 
-### 1. GitHub Pages Deployment (`kirito` branch)
+### 1. GitHub Pages Deployment (`main` & `kirito` branches)
 The website is configured for automated CI/CD deployment to GitHub Pages via `.github/workflows/deploy-pages.yml`:
 
-- **Trigger Branch**: `kirito` (and `Kirito`)
-- **Automation**: GitHub Actions automatically triggers a rebuild and redeployment on every `git push` to the `kirito` branch.
+- **Live URL**: [https://anushkabhardwaj15.github.io/hacktober-showcase/](https://anushkabhardwaj15.github.io/hacktober-showcase/)
+- **Trigger Branches**: `main`, `kirito`, and `Kirito`
+- **Automation**: GitHub Actions automatically triggers a rebuild and redeployment on every `git push` to `main` or `kirito`.
 - **Manual Deployment**: Manual triggering is enabled via `workflow_dispatch` in the Actions tab.
 - **Build Command**: `npm run build` (runs `node test/validate.js` to verify syntax, assets, and markup).
 - **Build Output Directory**: `.` (the static site root directory containing `index.html`).
