@@ -237,19 +237,28 @@ Every performance optimization in this codebase is grounded in the repository's 
 
 ---
 
-## GitHub Pages Deployment
+## Automated CI/CD & Deployments
 
-The website is configured for automated CI/CD deployment to GitHub Pages via GitHub Actions:
+### 1. GitHub Pages Deployment (`kirito` branch)
+The website is configured for automated CI/CD deployment to GitHub Pages via `.github/workflows/deploy-pages.yml`:
 
-- **Deployment Branch**: `Kirito`
-- **Automation**: GitHub Actions automatically triggers a rebuild and redeployment on every `git push` to the `Kirito` branch.
+- **Trigger Branch**: `kirito` (and `Kirito`)
+- **Automation**: GitHub Actions automatically triggers a rebuild and redeployment on every `git push` to the `kirito` branch.
 - **Manual Deployment**: Manual triggering is enabled via `workflow_dispatch` in the Actions tab.
 - **Build Command**: `npm run build` (runs `node test/validate.js` to verify syntax, assets, and markup).
 - **Build Output Directory**: `.` (the static site root directory containing `index.html`).
-- **Where Site is Served**: [https://saransh-sh.github.io/hacktober-showcase/](https://saransh-sh.github.io/hacktober-showcase/)
 - **Required Repository Settings**: In **Settings → Pages**, the Build and deployment source is set to **GitHub Actions** (`build_type: workflow`).
-- **Required Actions Permissions / Secrets**: The workflow defines `contents: read`, `pages: write`, and `id-token: write`. No private API keys or secrets are required.
-- **Image Format Preservation**: Images are intentionally preserved in their original formats (`.jpeg`, `.webp`) without automated conversion.
+- **Required Actions Permissions**: The workflow defines `contents: read`, `pages: write`, and `id-token: write`. No private API keys or secrets are required.
+
+### 2. Vercel Production Rebuild & Refresh (`main` branch)
+Whenever code is pushed or merged into `main`, `.github/workflows/deploy-vercel.yml` automatically validates and triggers a production refresh:
+
+- **Trigger Branch**: `main`
+- **Automation**: Triggers validation tests (`npm run build`) and refreshes production.
+- **Vercel Integration Options**:
+  - **Native Git Integration**: If the repository is connected to Vercel via GitHub App, Vercel automatically detects pushes to `main` and rebuilds the production deployment.
+  - **Vercel Deploy Hook**: Add `VERCEL_DEPLOY_HOOK` secret to GitHub repository secrets to trigger instant webhook rebuilds.
+  - **Vercel CLI**: Add `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` secrets to build and deploy using Vercel CLI.
 
 ---
 
